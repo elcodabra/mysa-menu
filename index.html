@@ -294,24 +294,79 @@
       width: fit-content;
     }
 
-    /* ── Drinks ── */
-    .drinks-grid {
+    /* ── Drink subsection ── */
+    .drink-subsection {
+      margin-bottom: 1.25rem;
+    }
+
+    .drink-subsection-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 0.4rem;
     }
 
-    .drink-chip {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
+    /* ── Drink cards ── */
+    .drink-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .drink-card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 0.45rem 0.85rem;
-      font-size: 0.82rem;
-      font-weight: 600;
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
       box-shadow: var(--shadow);
+      transition: box-shadow 0.2s;
+    }
+
+    .drink-card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .drink-info {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-width: 0;
+    }
+
+    .drink-emoji {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .drink-details { min-width: 0; }
+
+    .drink-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .drink-desc {
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+      line-height: 1.35;
+    }
+
+    .drink-price {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #048a46;
+      background: var(--accent-light);
+      padding: 0.12rem 0.55rem;
+      border-radius: 100px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     /* ── Promo ── */
@@ -371,6 +426,7 @@
       .promo-banner { padding: 1.25rem 1rem; }
       .promo-banner h3 { font-size: 0.95rem; }
       .promo-banner p { font-size: 0.82rem; }
+      .drink-cards { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 380px) {
@@ -607,15 +663,156 @@
     <section class="menu-section" id="bebidas">
       <div class="section-header">
         <div class="section-icon" style="background:#e3f2fd;">🥤</div>
-        <h2>Bebidas Disponibles</h2>
+        <h2>Bebidas / Soft Drinks</h2>
       </div>
 
-      <div class="drinks-grid">
-        <div class="drink-chip">🥤 Coca-Cola</div>
-        <div class="drink-chip">⚫ Coca-Cola Zero</div>
-        <div class="drink-chip">🍊 Fanta Naranja</div>
-        <div class="drink-chip">🍋 Nestea</div>
-        <div class="drink-chip">💧 Agua</div>
+      <!-- Refrescos Clásicos -->
+      <div class="drink-subsection">
+        <div class="drink-subsection-title">🥤 Refrescos Clásicos (330ml)</div>
+        <div class="drink-cards">
+          <div class="drink-card">
+            <div class="drink-info">
+              <span class="drink-emoji">🥤</span>
+              <div class="drink-details">
+                <div class="drink-name">Coca-Cola Original 330ml</div>
+                <div class="drink-desc">Refresco clásico con gas bien frío.</div>
+              </div>
+            </div>
+            <span class="drink-price">2,50 €</span>
+          </div>
+          <div class="drink-card">
+            <div class="drink-info">
+              <span class="drink-emoji">⚫</span>
+              <div class="drink-details">
+                <div class="drink-name">Coca-Cola Zero Azúcar 330ml</div>
+                <div class="drink-desc">Todo el sabor, cero azúcar.</div>
+              </div>
+            </div>
+            <span class="drink-price">2,50 €</span>
+          </div>
+          <div class="drink-card">
+            <div class="drink-info">
+              <span class="drink-emoji">🍊</span>
+              <div class="drink-details">
+                <div class="drink-name">Fanta Naranja 330ml</div>
+                <div class="drink-desc">Refresco de naranja con gas.</div>
+              </div>
+            </div>
+            <span class="drink-price">2,50 €</span>
+          </div>
+          <div class="drink-card">
+            <div class="drink-info">
+              <span class="drink-emoji">🍋</span>
+              <div class="drink-details">
+                <div class="drink-name">Fanta Limón 330ml</div>
+                <div class="drink-desc">Refresco cítrico refrescante.</div>
+              </div>
+            </div>
+            <span class="drink-price">2,50 €</span>
+          </div>
+          <div class="drink-card">
+            <div class="drink-info">
+              <span class="drink-emoji">🫧</span>
+              <div class="drink-details">
+                <div class="drink-name">Sprite 330ml</div>
+                <div class="drink-desc">Refresco lima-limón.</div>
+              </div>
+            </div>
+            <span class="drink-price">2,50 €</span>
+          </div>
+          <div class="drink-card">
+            <div class="drink-info">
+              <span class="drink-emoji">🍵</span>
+              <div class="drink-details">
+                <div class="drink-name">Nestea Limón 330ml</div>
+                <div class="drink-desc">Té frío refrescante.</div>
+              </div>
+            </div>
+            <span class="drink-price">2,50 €</span>
+          </div>
+          <div class="drink-card">
+            <div class="drink-info">
+              <span class="drink-emoji">💪</span>
+              <div class="drink-details">
+                <div class="drink-name">Aquarius Limón 330ml</div>
+                <div class="drink-desc">Bebida isotónica ligera.</div>
+              </div>
+            </div>
+            <span class="drink-price">2,50 €</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agua -->
+      <div class="drink-subsection">
+        <div class="drink-subsection-title">💧 Agua</div>
+        <div class="drink-cards">
+          <div class="drink-card">
+            <div class="drink-info">
+              <span class="drink-emoji">💧</span>
+              <div class="drink-details">
+                <div class="drink-name">Agua Mineral 500ml</div>
+                <div class="drink-desc">Agua natural fría.</div>
+              </div>
+            </div>
+            <span class="drink-price">2,00 €</span>
+          </div>
+          <div class="drink-card">
+            <div class="drink-info">
+              <span class="drink-emoji">🫧</span>
+              <div class="drink-details">
+                <div class="drink-name">Agua con Gas 500ml</div>
+                <div class="drink-desc">Agua mineral con burbujas.</div>
+              </div>
+            </div>
+            <span class="drink-price">2,50 €</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zumos y Premium -->
+      <div class="drink-subsection">
+        <div class="drink-subsection-title">🧃 Zumos y Opciones Premium</div>
+        <div class="drink-cards">
+          <div class="drink-card">
+            <div class="drink-info">
+              <span class="drink-emoji">🍊</span>
+              <div class="drink-details">
+                <div class="drink-name">Zumo de Naranja 200ml</div>
+                <div class="drink-desc">Zumo natural en botella.</div>
+              </div>
+            </div>
+            <span class="drink-price">2,50 €</span>
+          </div>
+          <div class="drink-card">
+            <div class="drink-info">
+              <span class="drink-emoji">🍑</span>
+              <div class="drink-details">
+                <div class="drink-name">Zumo de Melocotón 200ml</div>
+              </div>
+            </div>
+            <span class="drink-price">2,50 €</span>
+          </div>
+          <div class="drink-card">
+            <div class="drink-info">
+              <span class="drink-emoji">🧃</span>
+              <div class="drink-details">
+                <div class="drink-name">Zumo Multifrutas 200ml</div>
+              </div>
+            </div>
+            <span class="drink-price">2,50 €</span>
+          </div>
+          <div class="drink-card">
+            <div class="drink-info">
+              <span class="drink-emoji">⚡</span>
+              <div class="drink-details">
+                <div class="drink-name">Red Bull 250ml</div>
+                <div class="drink-desc">Bebida energética fría.</div>
+              </div>
+            </div>
+            <span class="drink-price">3,50 €</span>
+          </div>
+        </div>
       </div>
     </section>
 
