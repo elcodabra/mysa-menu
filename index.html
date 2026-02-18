@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MYSA Valencia – Menú Uber Eats</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #f6f6f6;
+      --card: #ffffff;
+      --text: #191919;
+      --text-secondary: #545454;
+      --accent: #06c167;
+      --accent-light: #e6f9ef;
+      --border: #e8e8e8;
+      --shadow: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-hover: 0 4px 20px rgba(0,0,0,0.10);
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--surface);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #191919 0%, #2d2d2d 100%);
+      color: #fff;
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .hero-content { position: relative; max-width: 720px; margin: 0 auto; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.2rem;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      font-weight: 400;
+    }
+
+    /* ── Sticky Nav ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .nav::-webkit-scrollbar { display: none; }
+
+    .nav-inner {
+      display: flex;
+      gap: 0.25rem;
+      padding: 0.5rem 1rem;
+      max-width: 900px;
+      margin: 0 auto;
+      justify-content: center;
+    }
+
+    .nav a {
+      white-space: nowrap;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 0.45rem 0.85rem;
+      border-radius: 100px;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .nav a:hover, .nav a.active {
+      background: var(--text);
+      color: #fff;
+    }
+
+    /* ── Main ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+    }
+
+    /* ── Section ── */
+    .menu-section { margin-bottom: 2rem; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+      padding-top: 0.25rem;
+    }
+
+    .section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .section-header h2 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Cards ── */
+    .menu-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .menu-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: box-shadow 0.25s, transform 0.25s;
+      cursor: default;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      height: 250px;
+    }
+
+    .menu-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-1px);
+    }
+
+    .card-image {
+      width: 250px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-content {
+      flex: 1;
+      padding: 1rem 1.4rem;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.6rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-name {
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .card-price {
+      font-size: 1rem;
+      font-weight: 800;
+      white-space: nowrap;
+      background: var(--accent-light);
+      color: #048a46;
+      padding: 0.15rem 0.65rem;
+      border-radius: 100px;
+      flex-shrink: 0;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      margin-bottom: 0.45rem;
+    }
+
+    .card-extras {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+    }
+
+    .extra-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--surface);
+      padding: 0.2rem 0.55rem;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+    }
+
+    .extra-tag .extra-price {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ── Combo/Menu cards ── */
+    .combo-card {
+      background: linear-gradient(135deg, #fef9f0 0%, #fff7e6 100%);
+      border: 1.5px solid #f5d78e;
+    }
+
+    .combo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #b8860b;
+      background: rgba(184,134,11,0.12);
+      padding: 0.12rem 0.5rem;
+      border-radius: 100px;
+      margin-bottom: 0.3rem;
+      width: fit-content;
+    }
+
+    .menu-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #06c167;
+      background: rgba(6,193,103,0.12);
+      padding: 0.12rem 0.5rem;
+      border-radius: 100px;
+      margin-bottom: 0.3rem;
+      width: fit-content;
+    }
+
+    /* ── Drinks ── */
+    .drinks-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .drink-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+    }
+
+    /* ── Promo ── */
+    .promo-banner {
+      background: linear-gradient(135deg, #06c167 0%, #04a054 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      margin-top: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .promo-banner h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+
+    .promo-banner p {
+      font-size: 0.85rem;
+      line-height: 1.55;
+      opacity: 0.92;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 1.5rem 1rem 2.5rem;
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+    }
+
+    .footer .uber-eats-logo {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .hero { padding: 2rem 1rem 1.5rem; }
+      .container { padding: 1rem 0.75rem; }
+      .menu-card { height: 120px; }
+      .card-image { width: 130px; }
+      .card-content { padding: 0.8rem 0.9rem; }
+      .card-name { font-size: 0.84rem; }
+      .card-desc { font-size: 0.75rem; }
+      .card-price { font-size: 0.82rem; }
+    }
+
+    @media (max-width: 360px) {
+      .menu-card { height: 100px; }
+      .card-image { width: 100px; }
+      .card-content { padding: 0.7rem 0.75rem; }
+    }
+
+    @media print {
+      body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .hero { break-after: avoid; }
+      .nav { display: none; }
+      .menu-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+      .menu-section { break-inside: avoid; }
+      .promo-banner { break-inside: avoid; }
+      .container { max-width: 100%; padding: 1rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">🔥 Nuevo en Valencia</div>
+      <h1>MYSA</h1>
+      <p>Kebab &amp; Shawarma · Auténtico sabor turco</p>
+    </div>
+  </header>
+
+  <!-- Sticky Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#shawarma" class="active">🐔 Chicken Shawarma</a>
+      <a href="#doner">🥙 Döner Kebab</a>
+      <a href="#falafel">🥗 Falafel</a>
+      <a href="#bebidas">🥤 Bebidas</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- ═══ CHICKEN SHAWARMA ═══ -->
+    <section class="menu-section" id="shawarma">
+      <div class="section-header">
+        <div class="section-icon" style="background:#fff3e0;">🐔</div>
+        <h2>Chicken Shawarma / Durum Pollo</h2>
+      </div>
+
+      <div class="menu-cards">
+        <div class="menu-card">
+          <div class="card-image">
+            <img src="images/chicken-shawarma-wrap.jpg" alt="Chicken Shawarma Wrap">
+          </div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-name">1. Chicken Shawarma Wrap – Kebab Pollo Durum</span>
+              <span class="card-price">7,50 €</span>
+            </div>
+            <p class="card-desc">Pollo marinado estilo shawarma, lechuga, tomate, cebolla y salsa de yogur.</p>
+            <div class="card-extras">
+              <span class="extra-tag">Extra Doble Carne <span class="extra-price">+2,50 €</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="card-image">
+            <img src="images/chicken-shawarma-queso.jpg" alt="Chicken Shawarma con Queso">
+          </div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-name">2. Chicken Shawarma con Queso – Durum Pollo con Queso</span>
+              <span class="card-price">8,50 €</span>
+            </div>
+            <p class="card-desc">Pollo shawarma, queso fresco turco, ensalada y salsa de yogur.</p>
+            <div class="card-extras">
+              <span class="extra-tag">Extra Doble Carne <span class="extra-price">+2,50 €</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card combo-card">
+          <div class="card-image">
+            <img src="images/menu-chicken-shawarma.jpg" alt="Menú Chicken Shawarma">
+          </div>
+          <div class="card-content">
+            <div class="menu-badge">📦 Menú</div>
+            <div class="card-top">
+              <span class="card-name">MENÚ Chicken Shawarma</span>
+              <span class="card-price">10,90 €</span>
+            </div>
+            <p class="card-desc">Incluye patatas fritas + bebida 33cl.</p>
+          </div>
+        </div>
+
+        <div class="menu-card combo-card">
+          <div class="card-image">
+            <img src="images/combo-shawarma.jpg" alt="Combo Pareja Shawarma">
+          </div>
+          <div class="card-content">
+            <div class="combo-badge">👫 Combo Pareja</div>
+            <div class="card-top">
+              <span class="card-name">COMBO PAREJA Shawarma</span>
+              <span class="card-price">16,90 €</span>
+            </div>
+            <p class="card-desc">2x Chicken Shawarma Wrap + 1 ración grande de patatas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DÖNER KEBAB ═══ -->
+    <section class="menu-section" id="doner">
+      <div class="section-header">
+        <div class="section-icon" style="background:#fce4ec;">🥙</div>
+        <h2>Döner Kebab · Ternera o Pollo</h2>
+      </div>
+
+      <div class="menu-cards">
+        <div class="menu-card">
+          <div class="card-image">
+            <img src="images/doner-kebab-clasico.jpg" alt="Döner Kebab Clásico">
+          </div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-name">3. Döner Kebab Clásico – Kebab Pan Ternera o Pollo</span>
+              <span class="card-price">7,00 €</span>
+            </div>
+            <p class="card-desc">Pan turco con carne de ternera lechal o pollo, ensalada y salsa de yogur.</p>
+            <div class="card-extras">
+              <span class="extra-tag">Extra Doble Carne <span class="extra-price">+2,50 €</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card">
+          <div class="card-image">
+            <img src="images/doner-kebab-queso.jpg" alt="Döner Kebab con Queso">
+          </div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-name">4. Döner Kebab con Queso – Kebab con Queso Fresco</span>
+              <span class="card-price">8,00 €</span>
+            </div>
+            <p class="card-desc">Carne de ternera o pollo, queso fresco turco, ensalada y salsa.</p>
+            <div class="card-extras">
+              <span class="extra-tag">Extra Doble Carne <span class="extra-price">+2,50 €</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-card combo-card">
+          <div class="card-image">
+            <img src="images/menu-doner-kebab.jpg" alt="Menú Döner Kebab">
+          </div>
+          <div class="card-content">
+            <div class="menu-badge">📦 Menú</div>
+            <div class="card-top">
+              <span class="card-name">MENÚ Döner Kebab</span>
+              <span class="card-price">10,50 €</span>
+            </div>
+            <p class="card-desc">Incluye patatas fritas + bebida 33cl.</p>
+          </div>
+        </div>
+
+        <div class="menu-card combo-card">
+          <div class="card-image">
+            <img src="images/combo-doner.jpg" alt="Combo Pareja Döner">
+          </div>
+          <div class="card-content">
+            <div class="combo-badge">👫 Combo Pareja</div>
+            <div class="card-top">
+              <span class="card-name">COMBO PAREJA Döner</span>
+              <span class="card-price">15,90 €</span>
+            </div>
+            <p class="card-desc">2x Döner Kebab Clásico + 1 ración grande de patatas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FALAFEL ═══ -->
+    <section class="menu-section" id="falafel">
+      <div class="section-header">
+        <div class="section-icon" style="background:#e8f5e9;">🥗</div>
+        <h2>Falafel Vegetariano</h2>
+      </div>
+
+      <div class="menu-cards">
+        <div class="menu-card">
+          <div class="card-image">
+            <img src="images/falafel-wrap.jpg" alt="Dürüm Falafel con Hummus">
+          </div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-name">5. Dürüm Falafel con Hummus – Wrap Vegetariano</span>
+              <span class="card-price">7,50 €</span>
+            </div>
+            <p class="card-desc">Falafel crujiente, hummus casero y ensalada fresca.</p>
+          </div>
+        </div>
+
+        <div class="menu-card combo-card">
+          <div class="card-image">
+            <img src="images/menu-falafel.jpg" alt="Menú Falafel">
+          </div>
+          <div class="card-content">
+            <div class="menu-badge">📦 Menú</div>
+            <div class="card-top">
+              <span class="card-name">MENÚ Falafel</span>
+              <span class="card-price">10,50 €</span>
+            </div>
+            <p class="card-desc">Incluye patatas fritas + bebida 33cl.</p>
+          </div>
+        </div>
+
+        <div class="menu-card combo-card">
+          <div class="card-image">
+            <img src="images/combo-falafel.jpg" alt="Combo Pareja Falafel">
+          </div>
+          <div class="card-content">
+            <div class="combo-badge">👫 Combo Pareja</div>
+            <div class="card-top">
+              <span class="card-name">COMBO PAREJA Falafel</span>
+              <span class="card-price">15,50 €</span>
+            </div>
+            <p class="card-desc">2x Dürüm Falafel + 1 ración grande de patatas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ BEBIDAS ═══ -->
+    <section class="menu-section" id="bebidas">
+      <div class="section-header">
+        <div class="section-icon" style="background:#e3f2fd;">🥤</div>
+        <h2>Bebidas Disponibles</h2>
+      </div>
+
+      <div class="drinks-grid">
+        <div class="drink-chip">🥤 Coca-Cola</div>
+        <div class="drink-chip">⚫ Coca-Cola Zero</div>
+        <div class="drink-chip">🍊 Fanta Naranja</div>
+        <div class="drink-chip">🍋 Nestea</div>
+        <div class="drink-chip">💧 Agua</div>
+      </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <div class="promo-banner">
+      <h3>🔥 NUEVO en Valencia – MYSA Kebab &amp; Shawarma</h3>
+      <p>Disfruta del auténtico sabor turco con carne de ternera lechal de calidad y pollo marinado estilo shawarma. Pide ahora en Uber Eats y descubre nuestros combos para compartir. Calidad, sabor y rapidez en cada pedido.</p>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="uber-eats-logo">Uber Eats</div>
+    <p>MYSA Valencia · Kebab &amp; Shawarma</p>
+  </footer>
+
+  <script>
+    const navLinks = document.querySelectorAll('.nav a');
+    const sections = document.querySelectorAll('.menu-section');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          const activeLink = document.querySelector(`.nav a[href="#${entry.target.id}"]`);
+          if (activeLink) activeLink.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -60% 0px' });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+
+</body>
+</html>
