@@ -256,6 +256,27 @@
       font-weight: 700;
     }
 
+    /* ── Smash burger text cards ── */
+    .smash-card {
+      height: auto;
+    }
+
+    .smash-card .card-image {
+      width: 230px;
+    }
+
+    .smash-card .card-content {
+      padding: 1rem 1.2rem;
+      justify-content: flex-start;
+      gap: 0.5rem;
+    }
+
+    .smash-detail {
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+    }
+
     /* ── Combo/Menu cards ── */
     .combo-card {
       background: linear-gradient(135deg, #fef9f0 0%, #fff7e6 100%);
@@ -470,6 +491,7 @@
       <a href="#shawarma" class="active">🐔 Chicken Shawarma</a>
       <a href="#doner">🥙 Döner Kebab</a>
       <a href="#falafel">🥗 Falafel</a>
+      <a href="#smash">🍔 Smash Burgers</a>
       <a href="#bebidas">🥤 Bebidas</a>
     </div>
   </nav>
@@ -664,6 +686,76 @@
             <p class="card-desc">2x Dürüm Falafel + 1 ración grande de patatas.</p>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ═══ MYSA SMASH BURGERS ═══ -->
+    <section class="menu-section" id="smash">
+      <div class="section-header">
+        <div class="section-icon" style="background:#fff8e1;">🍔</div>
+        <h2>MYSA Smash Burgers</h2>
+      </div>
+
+      <div class="menu-cards">
+        <div class="menu-card smash-card">
+          <div class="card-image">
+            <img src="images/smash-original.jpg" alt="MYSA Smash Original">
+          </div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-name">1. MYSA Smash Original</span>
+            </div>
+            <p class="card-desc">Doble carne smash, doble cheddar fundido, pepinillos, cebolla roja fresca y salsa especial MYSA.</p>
+            <p class="smash-detail">🥇 La smash signature de la casa.</p>
+          </div>
+        </div>
+
+        <div class="menu-card smash-card">
+          <div class="card-image">
+            <img src="images/truffle-forest-smash.jpg" alt="Truffle and Forest Smash">
+          </div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-name">2. Truffle &amp; Forest Smash</span>
+            </div>
+            <p class="card-desc">Doble carne smash, queso emmental, champiñones salteados, cebolla caramelizada y mayo de trufa.</p>
+            <p class="smash-detail">🌲 Sabor profundo y gourmet.</p>
+          </div>
+        </div>
+
+        <div class="menu-card smash-card">
+          <div class="card-image">
+            <img src="images/double-cheese-onion-smash.jpg" alt="Double Cheese and Onion Smash">
+          </div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-name">3. Double Cheese &amp; Onion</span>
+            </div>
+            <p class="card-desc">Doble carne smash, mezcla triple de quesos fundidos, cebolla caramelizada y cebolla roja con sumac.</p>
+            <p class="smash-detail">🧀 Para amantes del queso y la carne.</p>
+          </div>
+        </div>
+
+        <div class="menu-card smash-card">
+          <div class="card-image">
+            <img src="images/chicken-legend-premium.jpg" alt="Chicken Legend Premium">
+          </div>
+          <div class="card-content">
+            <div class="card-top">
+              <span class="card-name">4. Chicken Legend (Premium)</span>
+              <span class="extra-tag">NUEVO</span>
+            </div>
+            <p class="card-desc">Pechuga fresca marinada estilo mediterráneo, hecha a la plancha tipo butterfly, emmental fundido, tomate fresco, cebolla con sumac y salsa Bianca de ajo.</p>
+            <p class="smash-detail">💎 Nuestra burger de pollo estrella.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-extras" style="margin-top:0.65rem;">
+        <span class="extra-tag">➕ Doble Carne Smash <span class="extra-price">+3€</span></span>
+        <span class="extra-tag">🍟 Añadir Patatas <span class="extra-price">+3€</span></span>
+        <span class="extra-tag">🥤 Añadir Bebida <span class="extra-price">+2€</span></span>
+        <span class="extra-tag">🍔🍟🥤 Menú Completo (Burger + Patatas + Bebida)</span>
       </div>
     </section>
 
